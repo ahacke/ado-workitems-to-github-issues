@@ -1,0 +1,51 @@
+{
+  "name": "ado-workitems-to-github-issues",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "npx ts-node src/index.ts",
+    "format": "prettier --write \"**/*.{ts,tsx,md,js}\" --ignore-path \"./node_modules/config-prettier/.prettierignore\"",
+    "lint": "eslint 'src/**/*.ts'",
+    "test": "jest --detectOpenHandles",
+    "test-coverage": "jest --coverage",
+    "test-watch": "jest --watchAll",
+    "build": "ncc build src/index.ts -o dist",
+    "all": "pnpm run format && pnpm run lint && pnpm run test && pnpm run build",
+    "update:all": "pnpm update --stream --recursive",
+    "update:all-latest": "pnpm update --stream --recursive --latest"
+  },
+  "keywords": [],
+  "author": "ahacke",
+  "license": "",
+  "devDependencies": {
+    "@jest/globals": "^29.6.1",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.4.0",
+    "@vercel/ncc": "^0.36.1",
+    "azure-devops-node-api": "^12.1.0",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-github": "^4.8.0",
+    "eslint-plugin-jest": "^27.2.2",
+    "jest": "^29.6.1",
+    "octokit": "^2.1.0",
+    "prettier": "^3.0.0",
+    "tslog": "^4.8.2",
+    "typescript": "^5.1.6"
+  },
+  "//": "Experimental feature (currently not enabled)",
+  "packageManager": "pnpm@8.6.10",
+  "pnpm": {
+    "requiredScripts": [
+      "format",
+      "lint",
+      "test",
+      "build",
+      "clean",
+      "all"
+    ]
+  }
+}
