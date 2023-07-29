@@ -1,0 +1,90 @@
+{
+  id: 11,
+  rev: 1,
+  fields: {
+    'System.AreaPath': 'github-migration',
+    'System.TeamProject': 'github-migration',
+    'System.IterationPath': 'github-migration',
+    'System.WorkItemType': 'Bug',
+    'System.State': 'New',
+    'System.Reason': 'New',
+    'System.CreatedDate': '2023-07-29T10:28:13.787Z',
+    'System.CreatedBy': {
+      displayName: 'ahacke dev',
+      url: 'https://spsprodweu5.vssps.visualstudio.com/1234/_apis/Identities/1234',
+      _links: {
+        avatar: {
+          href: 'https://dev.azure.com/example-org/_apis/GraphProfile/MemberAvatars/example-avatar'
+        }
+      },
+      id: '1234',
+      uniqueName: 'random-unique-name',
+      imageUrl: 'https://dev.azure.com/example-org/_apis/GraphProfile/MemberAvatars/example-avatar',
+      descriptor: 'example-avatar'
+    },
+    'System.ChangedDate': '2023-07-29T10:28:13.787Z',
+    'System.ChangedBy': {
+      displayName: 'ahacke dev',
+      url: 'https://spsprodweu5.vssps.visualstudio.com/1234/_apis/Identities/1234',
+      _links: {
+        avatar: {
+          href: 'https://dev.azure.com/example-org/_apis/GraphProfile/MemberAvatars/example-avatar'
+        }
+      },
+      id: '1234',
+      uniqueName: 'random-unique-name',
+      imageUrl: 'https://dev.azure.com/example-org/_apis/GraphProfile/MemberAvatars/example-avatar',
+      descriptor: 'example-avatar'
+    },
+    'System.CommentCount': 0,
+    'System.Title': 'My Bug (related)',
+    'Microsoft.VSTS.Common.StateChangeDate': '2023-07-29T10:28:13.787Z',
+    'Microsoft.VSTS.Common.Priority': 2,
+    'Microsoft.VSTS.Common.Severity': '3 - Medium',
+    'Microsoft.VSTS.Common.ValueArea': 'Business',
+    'Microsoft.VSTS.TCM.ReproSteps': '<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br> </div>',
+    'System.Parent': 9
+  },
+  relations: [
+    {
+      rel: 'System.LinkTypes.Related',
+      url: 'https://dev.azure.com/example-org/1234/_apis/wit/workItems/10',
+      attributes: {
+        isLocked: false,
+        name: 'Related'
+      }
+    },
+    {
+      rel: 'System.LinkTypes.Hierarchy-Reverse',
+      url: 'https://dev.azure.com/example-org/1234/_apis/wit/workItems/9',
+      attributes: {
+        isLocked: false,
+        name: 'Parent'
+      }
+    }
+  ],
+  _links: {
+    self: {
+      href: 'https://dev.azure.com/example-org/1234/_apis/wit/workItems/11'
+    },
+    workItemUpdates: {
+      href: 'https://dev.azure.com/example-org/1234/_apis/wit/workItems/11/updates'
+    },
+    workItemRevisions: {
+      href: 'https://dev.azure.com/example-org/1234/_apis/wit/workItems/11/revisions'
+    },
+    workItemComments: {
+      href: 'https://dev.azure.com/example-org/1234/_apis/wit/workItems/11/comments'
+    },
+    html: {
+      href: 'https://dev.azure.com/example-org/1234/_workitems/edit/11'
+    },
+    workItemType: {
+      href: 'https://dev.azure.com/example-org/1234/_apis/wit/workItemTypes/Bug'
+    },
+    fields: {
+      href: 'https://dev.azure.com/example-org/1234/_apis/wit/fields'
+    }
+  },
+  url: 'https://dev.azure.com/example-org/1234/_apis/wit/workItems/11'
+}
