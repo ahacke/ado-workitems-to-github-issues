@@ -278,4 +278,12 @@ export class AzureDevopsWorkItemManager {
         }
         return witApi.updateWorkItem(null, [tag], workItemId)
     }
+
+    isClosed(workItem: WorkItemTrackingInterfaces.WorkItem) {
+        if (workItem.fields && workItem.fields['System.State']) {
+            const workItemState = workItem.fields['System.State']
+            return ['Done', 'Closed', 'Resolved', 'Removed'].includes(workItemState)
+        }
+        return false
+    }
 }

@@ -20,14 +20,16 @@ TypeScript script to migrate AzureDevOps work items to GitHub issues. Inspired b
 2. In the GitHub repository, the work items are migrated to, create a `label` for each work item type that is being migrated (i.e. Bug => `bug`). The labels are added to the GitHub issue to identity the work item type.
 3. Checkout the repository and configure the parameters in the `.env` file
 
-| Parameter          | Description                                                                                                                                                                |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ADO_TOKEN`        | Azure DevOps personal access token with `read` permissions. `write` permissions are necessary, if a tag and comment should be added to the migrated Azure DevOps work item |
-| `ADO_ORGANIZATION` | Azure DevOps organization to migrate from                                                                                                                                  |
-| `ADO_PROJECT`      | Azure DevOps project to migrate from                                                                                                                                       |
-| `GH_TOKEN`         | GitHub personal access token with permission to create issues                                                                                                              |
-| `GH_ORGANIZATION`  | GitHub organization to migrate to                                                                                                                                          |
-| `GH_REPOSITORY`    | GitHUb repository to migrate to                                                                                                                                            |
+| Parameter                        | Description                                                                                                                                                                |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ADO_TOKEN`                      | Azure DevOps personal access token with `read` permissions. `write` permissions are necessary, if a tag and comment should be added to the migrated Azure DevOps work item |
+| `ADO_ORGANIZATION`               | Azure DevOps organization to migrate from                                                                                                                                  |
+| `ADO_PROJECT`                    | Azure DevOps project to migrate from                                                                                                                                       |
+| `GH_TOKEN`                       | GitHub personal access token with permission to create issues                                                                                                              |
+| `GH_ORGANIZATION`                | GitHub organization to migrate to                                                                                                                                          |
+| `GH_REPOSITORY`                  | GitHub repository to migrate to                                                                                                                                            |
+| `OPT_MIGRATE_CLOSED_WORKITEMS`   | Option to migrate closed work items. Possible values: [`true`, `false`]                                                                                                    |
+| `OPT_ADD_TAG_MIGRATED_TO_GITHUB` | Option to add a tag and comment to migrated all migrated work items. Possible values: [`true`, `false`]                                                                    |
 
 Example `.env`
 
@@ -42,6 +44,10 @@ ADO_AREA_PATH=example-area-path
 GH_TOKEN=<GH_TOKEN>
 GH_ORGANIZATION=example-org-github
 GH_REPOSITORY=exmaple-repository
+
+# Options
+OPT_MIGRATE_CLOSED_WORKITEMS=false
+OPT_ADD_TAG_MIGRATED_TO_GITHUB=false
 ```
 
 ### Run
@@ -67,7 +73,5 @@ GH_REPOSITORY=exmaple-repository
 -   [ ] add github workflow to trigger it from GitHub
 -   [ ] Check if users can automatically assigned somehow
     -   Define a mapping table of ADO users to GitHub?
--   [ ] add configurations to migrate closed work items
-    -   [ ] close the issue if it's closed on the Azure Devops side
 -   [ ] Add log info output for different steps, so the user can follow what happened when and where
 -   [ ] add tests
