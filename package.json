@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "npx ts-node src/index.ts",
-    "format": "prettier --write \"**/*.{ts,tsx,md,js}\" --ignore-path \"./node_modules/config-prettier/.prettierignore\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md,js}\" --ignore-path \"./.prettierignore\"",
     "lint": "eslint 'src/**/*.ts'",
     "test": "jest --detectOpenHandles",
     "test-coverage": "jest --coverage",
