@@ -1,0 +1,39 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build-lint-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 8.6.3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install Packages
+        run: pnpm i
+
+      - name: Check format
+        run: pnpm run format
+
+      - name: Lint
+        run: pnpm run lint
+
+      #- name: Test
+      #  run: pnpm test-coverage
+
+      - name: Build
+        run: pnpm run all

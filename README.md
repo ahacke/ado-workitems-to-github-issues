@@ -56,7 +56,7 @@ GH_REPOSITORY=exmaple-repository
 
 ## Addiotinal information
 
-- Azure DevOps Rest API - Work Items - Get Work Item: https://learn.microsoft.com/en-us/rest/api/azure/devops/wit/work-items/get-work-item?tabs=HTTP#get-work-item
+-   Azure DevOps Rest API - Work Items - Get Work Item: https://learn.microsoft.com/en-us/rest/api/azure/devops/wit/work-items/get-work-item?tabs=HTTP#get-work-item
 
 ## Todo
 
