@@ -53,6 +53,21 @@ export class GitHubIssueManager {
             body: issueBody,
         })
     }
+
+    /**
+     * Closes a GitHub issue.
+     * @param ghIssue The GitHub issue to close
+     * @returns ReST response of the updated issue
+     */
+    async closeIssue(issue: GitHubIssue) {
+        return await this.octokitClient.rest.issues.update({
+            owner: this.organization,
+            repo: this.repository,
+            issue_number: issue?.number,
+            state: 'closed',
+        })
+    }
+
     /**
      * Creates a comment on a GitHub issue.
      * @param ghIssue The GitHub issue to comment on

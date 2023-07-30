@@ -25,8 +25,8 @@ const github_org = process.env.GH_ORGANIZATION
 const github_repository = process.env.GH_REPOSITORY
 const gh_token = process.env.GH_TOKEN
 
-const ado_migrate_closed_workItems = false
-const ado_add_tag_migrated_to_github = false
+const option_migrate_closed_workItems = String(process.env.OPT_MIGRATE_CLOSED_WORKITEMS).toLowerCase() === 'true'
+const option_add_tag_migrated_to_github = String(process.env.OPT_ADD_TAG_MIGRATED_TO_GITHUB).toLowerCase() === 'true'
 const DELETE_MIGRATED_GITHUB_ISSUES = false
 
 async function run() {
@@ -38,6 +38,7 @@ async function run() {
     if (!github_org || !github_repository || !gh_token) {
         throw new Error(`GitHub inputs are not all defined: organization=${github_org} repository=${github_repository} or the token.`)
     }
+
     log.info(`Starting migration for...`)
     log.info(`  FROM Azure DevOps`)
     log.info(`      -> Organization=${ado_org}`)
@@ -46,6 +47,9 @@ async function run() {
     log.info(`  TO GitHub`)
     log.info(`      -> Organization=${github_org}`)
     log.info(`      -> Repository=${github_repository}`)
+    log.info(`  Options`)
+    log.info(`      -> OPT_MIGRATE_CLOSED_WORKITEMS=${option_migrate_closed_workItems}`)
+    log.info(`      -> OPT_ADD_TAG_MIGRATED_TO_GITHUB=${option_add_tag_migrated_to_github}`)
 
     const adoWorkItemManager = new AzureDevopsWorkItemManager(ado_org, ado_project, ado_token, log)
     const gitHubIssueManager = new GitHubIssueManager(github_org, github_repository, gh_token, log)
@@ -60,7 +64,7 @@ async function run() {
         throw new Error('Stopping after deleting all issues!')
     }
 
-    const response = await adoWorkItemManager.queryByWiql(ado_migrate_closed_workItems, ado_area_path)
+    const response = await adoWorkItemManager.queryByWiql(option_migrate_closed_workItems, ado_area_path)
     log.trace(response)
 
     const workItemToGitHubIssue = new Map<number, GitHubIssue>()
@@ -108,8 +112,6 @@ async function run() {
         const workItem_json = adoWorkItemManager.generateJsonDetails(workItem)
         issue_comment += workItem_json
 
-        // TODO: Add migrated to tag to work item
-
         /*
         ############
         GitHub
@@ -128,11 +130,18 @@ async function run() {
         workItems.add(workItem)
 
         // Add tag "migrated-to-github" and comment to Azure DevOps work item
-        if (ado_add_tag_migrated_to_github) {
+        if (option_add_tag_migrated_to_github) {
             log.info(`Adding tag and comment to Azure DevOps work item ${adoWorkItemManager.getWorkItemTitle(workItem)}`)
             const comment = `Work item was migrated to GitHub: <a href="${ghIssue.html_url}">${ghIssue.html_url}</a>`
             await adoWorkItemManager.updateTag(workItemRef.id, 'add', 'migrated-to-github')
             await adoWorkItemManager.addComment(workItemRef.id, comment)
+        }
+
+        // Close GitHub issue in case work item was closed
+        if (option_migrate_closed_workItems) {
+            if (adoWorkItemManager.isClosed(workItem)) {
+                gitHubIssueManager.closeIssue(ghIssue)
+            }
         }
     }
     /*
