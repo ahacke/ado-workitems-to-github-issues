@@ -73,5 +73,4 @@ OPT_ADD_TAG_MIGRATED_TO_GITHUB=false
 -   [ ] add github workflow to trigger it from GitHub
 -   [ ] Check if users can automatically assigned somehow
     -   Define a mapping table of ADO users to GitHub?
--   [ ] Add log info output for different steps, so the user can follow what happened when and where
 -   [ ] add tests
