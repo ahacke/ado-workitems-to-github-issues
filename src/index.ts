@@ -131,7 +131,7 @@ async function run() {
 
         // Add tag "migrated-to-github" and comment to Azure DevOps work item
         if (option_add_tag_migrated_to_github) {
-            log.info(`Adding tag and comment to Azure DevOps work item ${adoWorkItemManager.getWorkItemTitle(workItem)}`)
+            log.info(`  Adding tag and comment to Azure DevOps work item ${adoWorkItemManager.getWorkItemTitle(workItem)}`)
             const comment = `Work item was migrated to GitHub: <a href="${ghIssue.html_url}">${ghIssue.html_url}</a>`
             await adoWorkItemManager.updateTag(workItemRef.id, 'add', 'migrated-to-github')
             await adoWorkItemManager.addComment(workItemRef.id, comment)
@@ -140,6 +140,7 @@ async function run() {
         // Close GitHub issue in case work item was closed
         if (option_migrate_closed_workItems) {
             if (adoWorkItemManager.isClosed(workItem)) {
+                log.info(`  Closing GitHub issue ${adoWorkItemManager.getWorkItemTitle(workItem)}`)
                 gitHubIssueManager.closeIssue(ghIssue)
             }
         }
@@ -152,7 +153,7 @@ async function run() {
 
     log.trace(workItemToGitHubIssue)
 
-    log.info(`Migrating relations as tasklists...`)
+    log.info(`Migrating relations as tasklists for...`)
     for (const workItem of workItems) {
         if (!workItem.id) {
             throw new Error(`WorkItem is missing its ID:\n ${workItem})`)
