@@ -28,7 +28,7 @@ TypeScript script to migrate AzureDevOps work items to GitHub issues. Inspired b
 | `GH_TOKEN`                       | GitHub personal access token with permission to create issues                                                                                                              |
 | `GH_ORGANIZATION`                | GitHub organization to migrate to                                                                                                                                          |
 | `GH_REPOSITORY`                  | GitHub repository to migrate to                                                                                                                                            |
-| `OPT_MIGRATE_CLOSED_WORKITEMS`   | Option to migrate closed work items. Possible values: [`true`, `false`]                                                                                                    |
+| `OPT_MIGRATE_CLOSED_WORKITEMS`   | Option to migrate `Done`, `Resolved`, `Closed` and `Removed` work items. Possible values: [`true`, `false`]                                                                                                    |
 | `OPT_ADD_TAG_MIGRATED_TO_GITHUB` | Option to add a tag and comment to migrated all migrated work items. Possible values: [`true`, `false`]                                                                    |
 
 Example `.env`
